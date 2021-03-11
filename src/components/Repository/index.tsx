@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { FcSimCardChip } from 'react-icons/fc';
+import { visa, master, elo } from '../../assets';
 import {
   Card,
   Container,
@@ -11,14 +12,35 @@ import {
   Code,
   Number,
 } from './styles';
-import Master from '../../assets/master.png';
 
 const Repository: React.FC = () => {
+  // const [mask];
+
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
   const [expire, setExpire] = useState('');
   const [security, setSecurity] = useState('');
   const [rotate, setRotate] = useState(false);
+  const [imaster, setMaster] = useState('');
+  const [ivisa, setVisa] = useState('');
+  const [ielo, setElo] = useState('');
+
+  switch (master) {
+    case 'value_1':
+      imaster = <img src={master} alt="master" />;
+      break;
+
+    case 'value_2':
+      ivisa = <img src={visa} alt="visa" />;
+      break;
+
+    case 'value_3':
+      ielo = <img src={elo} alt="elo" />;
+      break;
+
+    default:
+      break;
+  }
 
   return (
     <Container>
@@ -30,7 +52,11 @@ const Repository: React.FC = () => {
             <span>
               <FcSimCardChip />
 
-              <img src={Master} alt="master" />
+              {master === visa ? (
+                <img src={master} alt="master" />
+              ) : (
+                master
+              )}
             </span>
 
             <Number>
@@ -52,8 +78,8 @@ const Repository: React.FC = () => {
           </CardFront>
 
           <CardBack>
-            <p>{security || '000'}</p>
-            <h6>expiration</h6>
+            <p> {security || '000'} </p>
+            <h6> expiration</h6>
           </CardBack>
         </Card>
 
