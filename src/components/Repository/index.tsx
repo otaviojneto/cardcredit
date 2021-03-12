@@ -47,6 +47,13 @@ const Repository: React.FC = () => {
     return setPaymentType(flag);
   }, [number]);
 
+  const placeholders = {
+    name: 'Joseph Climber',
+    cardholderNumber: '1234 5678 9012 3456',
+    expiration: '12/12',
+    code: '000',
+  };
+
   // eslint-disable-next-line consistent-return
   const handleFlag = () => {
     console.log(paymentType);
@@ -87,25 +94,35 @@ const Repository: React.FC = () => {
 
             <Number>
               <h6>card number</h6>
-              <p>{number || '1234 5678 9012 3456'}</p>
+              {number ? (
+                <p>{number}</p>
+              ) : (
+                placeholders.cardholderNumber
+              )}
             </Number>
 
             <Code>
               <div>
                 <h6>cardholder Name</h6>
-                <p>{name || 'Joseph Climber'}</p>
+                {name ? <p>{name}</p> : placeholders.name}
               </div>
 
               <div>
                 <h6>expiration</h6>
-                <p>{expire || '12/12'}</p>
+                {expire ? (
+                  <p>{expire}</p>
+                ) : (
+                  placeholders.expiration
+                )}
               </div>
             </Code>
           </CardFront>
 
           <CardBack>
-            <p> {security || '000'} </p>
-            <h6> expiration</h6>
+            <div>
+              {security ? <p>{security}</p> : placeholders.code}
+            </div>
+            <h5> Security Code</h5>
           </CardBack>
         </Card>
 
@@ -115,6 +132,7 @@ const Repository: React.FC = () => {
             <input
               type="text"
               onChange={event => setName(event.target.value)}
+              placeholder={placeholders.name}
             />
           </label>
           <br />
@@ -124,6 +142,7 @@ const Repository: React.FC = () => {
             <input
               type="text"
               onChange={event => setNumber(event.target.value)}
+              placeholder={placeholders.cardholderNumber}
             />
           </label>
 
@@ -133,6 +152,7 @@ const Repository: React.FC = () => {
               <input
                 type="text"
                 onChange={event => setExpire(event.target.value)}
+                placeholder={placeholders.expiration}
               />
             </label>
 
@@ -143,6 +163,7 @@ const Repository: React.FC = () => {
                 onChange={e => setSecurity(e.target.value)}
                 onFocus={() => setRotate(true)}
                 onBlur={() => setRotate(false)}
+                placeholder={placeholders.code}
               />
             </label>
           </Security>

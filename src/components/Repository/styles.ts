@@ -121,22 +121,23 @@ export const Code = styled.div`
 `;
 
 export const CardBack = styled.div`
-  display: flex;
   align-items: center;
-  justify-content: flex-end;
   backface-visibility: hidden;
-  border-radius: 22px;
   background-color: ${Colors.warning};
+  border-radius: 22px;
   box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px,
     rgba(0, 0, 0, 0.22) 0px 10px 10px;
   color: black;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   height: 54vw;
-  max-height: 251px;
   margin: 0 auto;
-  width: 400px;
+  max-height: 251px;
   padding: 20px;
   position: absolute;
   transform: rotateY(180deg);
+  width: 400px;
 
   &::before {
     background-color: ${Colors.black};
@@ -148,12 +149,29 @@ export const CardBack = styled.div`
     right: 0;
   }
 
-  &::after {
-    content: '';
-    width: 280px;
-    height: 30px;
-    left: 20px;
-    position: absolute;
-    background-color: ${Colors.white};
+  div {
+    margin-top: 60px;
+    background-color: grey;
+    display: flex;
+    align-items: center;
+
+    &::before {
+      background-color: #ffffff;
+      content: '';
+      height: 30px;
+      width: 250px;
+    }
+
+    p {
+      text-align: center;
+      width: 40px;
+    }
+  }
+
+  h5 {
+    color: grey;
+    margin-top: 6px;
+    position: relative;
+    right: -92px;
   }
 `;
